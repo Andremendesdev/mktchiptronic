@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chiptronic | Chega de Perder Tempo no Trânsito</title>
+<meta name="description" content="Pare de gastar fortunas com combustível e perder horas da sua vida parado no trânsito. Conheça as patinetes elétricas ultra-responsivas da Chiptronic e reassuma o controle do seu tempo." />
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-surface": "#e5e2e1",
+                "secondary-container": "#474746",
+                "inverse-on-surface": "#313030",
+                "tertiary-fixed": "#e2e2e2",
+                "on-tertiary-fixed-variant": "#454747",
+                "surface-dim": "#131313",
+                "surface-container": "#201f1f",
+                "primary-fixed": "#a0fb00",
+                "primary-fixed-dim": "#8cdc00",
+                "surface-variant": "#353534",
+                "on-primary-fixed-variant": "#304f00",
+                "on-secondary-fixed-variant": "#474746",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary": "#2f3131",
+                "inverse-surface": "#e5e2e1",
+                "surface-container-high": "#2a2a2a",
+                "on-surface-variant": "#c0caad",
+                "on-primary-fixed": "#102000",
+                "secondary": "#c8c6c5",
+                "on-primary": "#1f3700",
+                "secondary-fixed-dim": "#c8c6c5",
+                "outline": "#8a947a",
+                "inverse-primary": "#416900",
+                "surface-container-low": "#1c1b1b",
+                "surface": "#131313",
+                "on-error-container": "#ffdad6",
+                "error-container": "#93000a",
+                "primary": "#ffffff",
+                "tertiary": "#ffffff",
+                "on-error": "#690005",
+                "on-secondary": "#313030",
+                "background": "#131313",
+                "surface-tint": "#8cdc00",
+                "surface-container-highest": "#353534",
+                "on-tertiary-container": "#636565",
+                "secondary-fixed": "#e5e2e1",
+                "on-tertiary-fixed": "#1a1c1c",
+                "primary-container": "#a0fb00",
+                "surface-bright": "#3a3939",
+                "on-secondary-fixed": "#1c1b1b",
+                "on-primary-container": "#457000",
+                "outline-variant": "#414a34",
+                "tertiary-container": "#e2e2e2",
+                "error": "#ffb4ab",
+                "on-background": "#e5e2e1",
+                "on-secondary-container": "#b7b5b4",
+                "tertiary-fixed-dim": "#c6c6c7"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "16px",
+                "base": "8px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "margin-desktop": "64px"
+        },
+        "fontFamily": {
+                "body-md": [
+                        "Montserrat"
+                ],
+                "headline-md": [
+                        "Montserrat"
+                ],
+                "label-md": [
+                        "Montserrat"
+                ],
+                "headline-xl": [
+                        "Montserrat"
+                ],
+                "headline-lg-mobile": [
+                        "Montserrat"
+                ],
+                "headline-lg": [
+                        "Montserrat"
+                ],
+                "body-lg": [
+                        "Montserrat"
+                ]
+        },
+        "fontSize": {
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-xl": [
+                        "64px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Custom Styles for Glows and Animations */
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(160, 251, 0, 0.4);
+        }
+        .glow-secondary {
+            box-shadow: 0 0 20px rgba(160, 251, 0, 0.4);
+        }
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(160, 251, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(160, 251, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(160, 251, 0, 0); }
+        }
+        .pulse-whatsapp {
+            animation: pulse-green 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col pt-20">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl dark:bg-surface/80 border-b border-white/10 shadow-[0_0_20px_rgba(160,251,0,0.1)] transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-gutter md:px-margin-desktop h-20 w-full max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<a class="font-headline-md text-headline-md tracking-tighter text-primary-fixed dark:text-primary-fixed" href="#">
+                CHIPTRONIC
+            </a>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex gap-gutter">
+<a class="font-label-md text-label-md text-primary-fixed relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary-fixed after:rounded-full transition-colors hover:glow-primary duration-300" href="#models">
+                    Modelos
+                </a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors hover:glow-primary duration-300" href="#engineering">
+                    Tecnologia
+                </a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors hover:glow-primary duration-300" href="#eco">
+                    Impacto Verde
+                </a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary-fixed transition-colors hover:glow-primary duration-300" href="#faq">
+                    Dúvidas
+                </a>
+</div>
+<!-- Trailing Action -->
+<a class="hidden md:flex items-center gap-base font-label-md text-label-md bg-primary-container text-on-primary-container px-6 py-3 rounded-full hover:glow-secondary transition-all" href="https://wa.me/1234567890" aria-label="Fale conosco no WhatsApp para parar de perder tempo">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+                Parar de Perder Tempo
+            </a>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary-fixed p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center pt-margin-desktop pb-margin-desktop px-gutter md:px-margin-desktop overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 bg-surface-container-lowest">
+<img alt="Electric Scooter" class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="A sleek, high-performance electric scooter parked on a dark, wet urban street at night. Neon blue and green reflections bounce off the sleek matte black chassis and wet asphalt, creating a futuristic, cyberpunk aesthetic. The lighting is dramatic and cinematic, emphasizing the scooter's cutting-edge engineering and speed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgaO14nXfX9BrlfGJaiY21Ek5kKr3tTDxIpAq7CA_3_H3N_HOA4moK6t6HtncTKYtHaPRZXVbvHzw7I-CKAzPPKv9jNTX1BoVlVtwm6vGsoebeds7fdjhzYVyFk_aqVWdgBbQN88Ls03h7cOxoBfjYa-5AMfDSeIKs96RFetVnZUSXIr35f73RcjmpM2usVsuN9ISWy3C0DePK_srU_MY89aUmU4aX0P3QadCSQ2GRUyPJc9Gf354bYMk21xAcfrAou05JIhUQWgPK"/>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-margin-desktop items-center">
+<div class="flex flex-col items-start gap-gutter">
+<span class="font-label-md text-label-md text-primary-fixed tracking-[0.2em] bg-primary-fixed/10 px-3 py-2 rounded-full border border-primary-fixed/20">MOBILIDADE INTELIGENTE</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">
+                        Seu tempo vale ouro. <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-fixed to-primary-fixed-dim">Chega de perder tempo no trânsito.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Chega de perder tempo no tráfego. Nossas scooters elétricas oferecem agilidade, autonomia confiável e tecnologia avançada que simplifica o seu deslocamento.
+                    </p>
+<div class="mt-gutter flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-base font-label-md text-label-md bg-primary-container text-on-primary-container px-8 py-4 rounded-full hover:glow-primary transition-all duration-300" href="https://wa.me/1234567890">
+                            Descubra a Liberdade
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-base font-label-md text-label-md bg-transparent border border-primary-fixed text-primary-fixed px-8 py-4 rounded-full hover:bg-primary-fixed hover:text-on-primary-container transition-all duration-300" href="#models">
+                            Explore Modelos
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Models Grid -->
+<section class="py-margin-desktop px-gutter md:px-margin-desktop max-w-container-max mx-auto" id="models">
+<div class="mb-margin-desktop flex flex-col md:flex-row justify-between items-end gap-gutter border-b border-white/10 pb-gutter">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:hidden">ESCOLHA SUA ARMA</h2>
+<h2 class="font-headline-lg text-headline-lg text-on-surface hidden md:block">ESCOLHA SUA ARMA</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Chega de desculpas. Escolha a máquina que vai atropelar o trânsito da sua rotina.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Model 1 -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute top-6 right-6 z-10">
+<span class="font-label-md text-label-md bg-surface-container-high px-3 py-1 rounded-full text-primary-fixed">URBANA</span>
+</div>
+<div class="h-64 relative bg-surface-container-lowest rounded-lg flex items-center justify-center p-4">
+<img alt="SM-1" class="max-h-full object-contain mix-blend-screen opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A minimalist, ultra-modern electric scooter designed for city commuting, isolated against a stark, dark grey studio background. The scooter features a slim matte black frame with sharp neon blue accent lines. The lighting highlights the smooth, aerodynamic curves and high-tech minimalist design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA02-LT4T_Zex1bYYZcE4M0bY2coDULfARsf7B-HGMrkZJK14H53zw4N4OCxBE9YFXKsEkE4vLMsdYrZ8NZ5kZCF2b2vEK5txY3czdf4WRPEtMqvFH14GckJqB_BTSG8VEAOvT8Jte3sKCXJ0Fj8OMyIJNCw5PbB7RRrGN_TXoV6J_9zL9fhSG2SLzoHRxC4HrXlvqEm4aadHN6z_7-7ymVuFnMrnRSaWEe4g7PjrR0j3KXvxQQM3zyZbHyyqUCwGfANOBKux8j1e3J"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">SM-1 CITY</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Para quem cansou de ser humilhado no transporte público todos os dias. Leve, ágil e letal contra o trânsito.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10 mt-auto">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">AUTONOMIA</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold block">40 km</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">VELOCIDADE</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold block">25 km/h</span>
+</div>
+</div>
+<a class="w-full text-center font-label-md text-label-md border border-primary-fixed text-primary-fixed py-3 rounded-full hover:bg-primary-fixed hover:text-on-primary-container transition-all mt-4" href="https://wa.me/1234567890">Quero Liberdade</a>
+</div>
+<!-- Model 2 -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 border-primary-fixed/30">
+<div class="absolute top-6 right-6 z-10 flex gap-2">
+<span class="font-label-md text-label-md bg-primary-container text-on-primary-container px-3 py-1 rounded-full">PRO</span>
+</div>
+<div class="h-64 relative bg-surface-container-lowest rounded-lg flex items-center justify-center p-4">
+<img alt="SM-PRO" class="max-h-full object-contain mix-blend-screen opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A robust, high-performance electric scooter with aggressive, futuristic styling, isolated on a deep black background. The scooter has thick, off-road capable tires, a dual suspension system visible in metallic grey, and intense neon blue underglow lighting. The studio lighting emphasizes its power and premium build quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnEXiUMx9WZmcn95P0c4ma0Oc2NkDgnOsQV0J8MFaciYpqwq_30NNZ63GdJ8UXEH6uWwbZNXO7M9yTQaRgDQLZCW5Qfw85zcU6tQXcTrMyoqCwIB9mVuWnuGJyoCk6GK_BqKczyxJkfZSXVhxLq8jm_uXutZ0NNgrTa-AWXgtuWu3A-T7Jap3ZkhZpyJBTwcliz97qWRu1gzHFLqmEzuYvBWMjgGpSuII7YZFoSLmKeKaJIaXIcohLQ1Swiv-kUgwgaijt39DxfqRR"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">SM-PRO APEX</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Potência brutal. Se você quer apenas brincar, compre um patinete infantil. Isso aqui é para quem quer mandar nas ruas.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10 mt-auto">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">AUTONOMIA</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold block">75 km</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">VELOCIDADE</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold block">45 km/h</span>
+</div>
+</div>
+<a class="w-full text-center font-label-md text-label-md bg-primary-container text-on-primary-container py-3 rounded-full hover:glow-primary transition-all mt-4" href="https://wa.me/1234567890">Domar a Fera</a>
+</div>
+<!-- Model 3 -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute top-6 right-6 z-10">
+<span class="font-label-md text-label-md bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full">ECO</span>
+</div>
+<div class="h-64 relative bg-surface-container-lowest rounded-lg flex items-center justify-center p-4">
+<img alt="SM-ECO" class="max-h-full object-contain mix-blend-screen opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A sleek, environmentally focused electric scooter showcasing sustainable materials, set against a dark studio background. The design features a matte dark grey frame with subtle, vibrant neon green accents and branding. The lighting is crisp, highlighting the seamless integration of battery technology and minimalist form factor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfQ91698Helazc9jxUztsxBOR2omLiv_ZtN96rE1TWGI3EWxPUUMB_YcIpqDRBwWebSubK3c2i-0yLZ1N8xrA4cpBX2gX0_p4Y_WVihee_QqDPN0hINRDiNzUGMo5mugfPyL0fipA5Le33xRWT16M3DRjZUL1vNoHG2PgkA-D7N6kwrmSB2YOpawB1RuM63TV2Arn5JGaLATQk7raMbKTXT3tMuDfHqRff-iiLwvERm4C2jK8r3_VVBF7g1TQPGaNmwygwJmyM_gFz"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">SM-ECO LITE</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Mortal para o trânsito, impecável para o planeta. Sustentabilidade de verdade para quem quer chegar antes.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10 mt-auto">
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">AUTONOMIA</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold block">50 km</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">VELOCIDADE</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold block">30 km/h</span>
+</div>
+</div>
+<a class="w-full text-center font-label-md text-label-md border border-primary-fixed text-primary-fixed py-3 rounded-full hover:bg-primary-fixed hover:text-on-primary-container transition-all mt-4" href="https://wa.me/1234567890">Dominar o Futuro</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-margin-desktop mt-margin-desktop border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center gap-gutter px-gutter md:px-margin-desktop max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-primary-fixed opacity-80 hover:opacity-100 transition-opacity">
+                CHIPTRONIC
+            </div>
+<div class="flex flex-wrap justify-center gap-gutter font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Políticas de Privacidade</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Termos de Uso</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Envio & Frete</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Garantia</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">
+                © 2026 CHIPTRONIC. Todos os direitos reservados. Conduza com liberdade.
+            </div>
+</div>
+</footer>
+<!-- Floating WhatsApp Button -->
+<a class="fixed bottom-margin-desktop right-margin-desktop z-50 bg-primary-container text-on-primary-container p-4 rounded-full pulse-whatsapp hover:scale-110 transition-transform duration-300 flex items-center justify-center shadow-lg" href="https://wa.me/1234567890" aria-label="Fale com a Chiptronic no WhatsApp e saia do trânsito">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">chat</span>
+</a>
+<script>
+        // Simple accordion logic could go here if needed
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('active');
+                if (button.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = 0;
+                }
+            });
+        });
+    </script>
+</body></html>
