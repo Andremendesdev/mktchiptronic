@@ -2,16 +2,13 @@
 
 import { motion } from "framer-motion";
 import Logo from "./Logo";
-import NeonLights from "./effects/NeonLights";
 import FloatingParticles from "./effects/FloatingParticles";
 
 const CURTAIN_TRANSITION = { duration: 0.75, ease: [0.22, 1, 0.36, 1] };
 
 const SplashBackground = () => (
   <div className="fixed inset-0 pointer-events-none bg-background" aria-hidden="true">
-    <NeonLights />
     <FloatingParticles quickStart />
-    <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
   </div>
 );
 

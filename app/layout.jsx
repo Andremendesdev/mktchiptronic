@@ -19,7 +19,7 @@ const outfit = Outfit({
 export const metadata = {
   title: "Chiptronic | Tecnologia Automotiva",
   description:
-    "Cursos gratuitos e soluções em tecnologia automotiva. Qualifique-se e destaque-se com a Chiptronic.",
+    "Cursos gratuitos de diagnóstico automotivo com equipamentos Chiptronic. Inscreva-se pelo WhatsApp.",
 };
 
 export default function RootLayout({ children }) {

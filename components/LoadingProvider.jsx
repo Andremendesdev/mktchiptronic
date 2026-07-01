@@ -44,14 +44,16 @@ export const LoadingProvider = ({ children }) => {
       doneTimer = setTimeout(() => setPhase("done"), remaining + FADE_MS);
     };
 
+    const onLoad = () => beginTransition();
+
     if (document.readyState === "complete") {
       beginTransition();
     } else {
-      window.addEventListener("load", beginTransition);
+      window.addEventListener("load", onLoad);
     }
 
     return () => {
-      window.removeEventListener("load", beginTransition);
+      window.removeEventListener("load", onLoad);
       clearTimeout(fadeTimer);
       clearTimeout(doneTimer);
     };

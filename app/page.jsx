@@ -14,7 +14,6 @@ export default function Home() {
         <Hero />
         <SectionTransition />
         <StatsSection />
-        <SectionTransition />
         <ModelsGrid />
       </main>
       <Footer />

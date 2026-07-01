@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const WHATSAPP_URL = "https://wa.me/1234567890";
+import { WHATSAPP_GENERAL_URL } from "@/lib/whatsapp";
 
 const WhatsAppIcon = ({ className = "h-8 w-8" }) => (
   <svg
@@ -44,9 +44,9 @@ const WhatsAppFAB = () => {
             stiffness: 260,
             damping: 20,
           }}
-          href={WHATSAPP_URL}
+          href={WHATSAPP_GENERAL_URL}
           className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 bg-[#25D366] hover:bg-[#20BD5A] text-white p-4 rounded-full shadow-lg shadow-black/25 hover:shadow-xl active:scale-95 transition-all duration-300 flex items-center justify-center focus:outline-none focus-visible:ring-4 focus-visible:ring-green-500/50"
-          aria-label="Fale com a Chiptronic no WhatsApp"
+          aria-label="Tirar dúvidas sobre os cursos no WhatsApp"
         >
           <WhatsAppIcon className="h-8 w-8" />
         </motion.a>

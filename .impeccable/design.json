@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-26T00:00:00.000Z",
+  "title": "Design System: Chiptronic",
+  "extensions": {
+    "colorMeta": {
+      "background-deep": {
+        "role": "neutral",
+        "displayName": "Workshop Black",
+        "canonical": "oklch(18% 0 0)",
+        "tonalRamp": ["#0a0a0a", "#0e0e0e", "#131313", "#1a1a1a", "#201f1f", "#2a2a2a", "#353534", "#4a4a4a"]
+      },
+      "accent-sky": {
+        "role": "secondary",
+        "displayName": "Diagnostic Sky",
+        "canonical": "oklch(68% 0.15 230)",
+        "tonalRamp": ["#0c4a6e", "#075985", "#0369a1", "#0284c7", "#0ea5e9", "#38bdf8", "#7dd3fc", "#bae6fd"]
+      },
+      "accent-green": {
+        "role": "primary",
+        "displayName": "Action Green",
+        "canonical": "oklch(72% 0.19 145)",
+        "tonalRamp": ["#14532d", "#166534", "#15803d", "#16a34a", "#22c55e", "#4ade80", "#86efac", "#bbf7d0"]
+      },
+      "accent-whatsapp": {
+        "role": "tertiary",
+        "displayName": "WhatsApp Green",
+        "canonical": "oklch(70% 0.19 155)",
+        "tonalRamp": ["#128C7E", "#1DA851", "#25D366", "#2EE06A", "#5AE88A", "#8FEFAB", "#B8F5C8", "#E0FAE8"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero e títulos de seção principais." },
+      "body": { "displayName": "Body", "purpose": "Parágrafos e descrições." },
+      "label": { "displayName": "Label", "purpose": "Botões, eyebrows, metadados uppercase." }
+    },
+    "shadows": [
+      { "name": "glass-panel", "value": "0 10px 30px rgba(0,0,0,0.25)", "purpose": "Painéis escuros com blur no footer." },
+      { "name": "card-light", "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)", "purpose": "Cards de curso em fundo claro." },
+      { "name": "cta-green-glow", "value": "0 0 8px rgba(74,222,128,0.25), 0 0 16px rgba(34,197,94,0.15)", "purpose": "Halo sutil no CTA do hero." }
+    ],
+    "motion": [
+      { "name": "ease-premium", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Reveals Framer Motion e transições de card." },
+      { "name": "duration-standard", "value": "300ms", "purpose": "Hover de botões e cores." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA (Hero)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Conversão principal no hero — gradiente verde com leve glow.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Quero aprender agora! <svg class=\"ds-btn-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-outfit), sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; color: #fff; background: linear-gradient(to bottom, #4ade80, #16a34a); padding: 16px 32px; border: none; border-radius: 6px; box-shadow: 0 0 8px rgba(74,222,128,0.25), 0 0 16px rgba(34,197,94,0.15); cursor: pointer; transition: filter 0.3s, transform 0.3s, box-shadow 0.3s; } .ds-btn-primary:hover { filter: brightness(1.1); transform: scale(1.02); box-shadow: 0 0 10px rgba(74,222,128,0.35), 0 0 20px rgba(34,197,94,0.2); } .ds-btn-primary:focus-visible { outline: 2px solid #4ade80; outline-offset: 2px; } .ds-btn-icon { width: 18px; height: 18px; }"
+    },
+    {
+      "name": "Course CTA",
+      "kind": "button",
+      "refersTo": "button-course",
+      "description": "Botão 'Eu quero' nos cards de curso — verde sólido, sem scale.",
+      "html": "<button class=\"ds-btn-course\" type=\"button\">Eu quero</button>",
+      "css": ".ds-btn-course { display: block; width: 100%; font-family: var(--font-outfit), sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; color: #fff; background: #22c55e; padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.2s; } .ds-btn-course:hover { background: #16a34a; } .ds-btn-course:focus-visible { outline: 2px solid #0ea5e9; outline-offset: 2px; }"
+    },
+    {
+      "name": "WhatsApp FAB",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Botão flutuante fixo — verde oficial WhatsApp, sem neon.",
+      "html": "<a class=\"ds-btn-whatsapp\" href=\"#\" aria-label=\"Fale com a Chiptronic no WhatsApp\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" width=\"32\" height=\"32\"><path d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg></a>",
+      "css": ".ds-btn-whatsapp { position: fixed; bottom: 24px; right: 24px; display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: #25D366; color: #fff; border-radius: 9999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.25); text-decoration: none; transition: background-color 0.3s, box-shadow 0.3s; } .ds-btn-whatsapp:hover { background: #20BD5A; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2); } .ds-btn-whatsapp:focus-visible { outline: 4px solid rgba(34,197,94,0.5); }"
+    },
+    {
+      "name": "Course Card",
+      "kind": "card",
+      "description": "Card compacto de curso em fundo claro.",
+      "html": "<article class=\"ds-course-card\"><div class=\"ds-course-card-image\"><img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'%3E%3Crect fill='%23f5f5f5' width='200' height='120'/%3E%3C/svg%3E\" alt=\"\" /></div><h3 class=\"ds-course-card-title\">Curso de utilização do Motodiag Live</h3><button class=\"ds-btn-course\" type=\"button\">Eu quero</button></article>",
+      "css": ".ds-course-card { display: flex; flex-direction: column; gap: 16px; padding: 20px; background: #fff; border: 1px solid rgba(2,132,199,0.4); border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); } .ds-course-card-image { height: 176px; background: #f5f5f5; border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; } .ds-course-card-image img { max-height: 100%; object-fit: contain; } .ds-course-card-title { font-family: var(--font-montserrat), sans-serif; font-size: 18px; font-weight: 600; line-height: 1.35; text-align: center; color: #171717; margin: 0; }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "chip",
+      "description": "Eyebrow uppercase sky em seções escuras.",
+      "html": "<p class=\"ds-section-label\">As melhores soluções do mercado para sua oficina.</p>",
+      "css": ".ds-section-label { font-family: var(--font-outfit), sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #0ea5e9; margin: 0; }"
+    },
+    {
+      "name": "Glass Contact Card",
+      "kind": "card",
+      "description": "Card de contato no footer escuro.",
+      "html": "<a class=\"ds-glass-card\" href=\"#\"><span class=\"ds-glass-card-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#0ea5e9\" stroke-width=\"2\"><path d=\"M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z\"/></svg></span><span><small class=\"ds-glass-card-meta\">Telefone</small><strong class=\"ds-glass-card-value\">(14) 99999-9999</strong></span></a>",
+      "css": ".ds-glass-card { display: flex; align-items: center; gap: 16px; padding: 20px; background: rgba(18,18,18,0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; text-decoration: none; color: #e5e2e1; transition: border-color 0.3s; } .ds-glass-card:hover { border-color: rgba(14,165,233,0.2); } .ds-glass-card-icon { width: 40px; height: 40px; border-radius: 9999px; background: rgba(14,165,233,0.1); border: 1px solid rgba(14,165,233,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .ds-glass-card-meta { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #c0caad; } .ds-glass-card-value { display: block; font-size: 16px; font-weight: 600; margin-top: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Bancada Iluminada",
+    "overview": "Chiptronic se apresenta como um laboratório de diagnóstico automotivo em escala de marca: escuro, preciso, com luzes de equipamento (sky) e sinais de ação (verde). A landing transmite que o mecânico está no lugar certo para aprender com tecnologia real.",
+    "keyCharacteristics": [
+      "Fundo escuro técnico com partículas e neon sky ambiental",
+      "Verde reservado para conversão",
+      "Sky para marca, labels e underlines",
+      "Montserrat + Outfit",
+      "Seção de cursos em fundo claro para legibilidade"
+    ],
+    "rules": [
+      { "name": "The Two-Voice Color Rule", "body": "Sky ilumina e marca; verde converte. Nunca invertir.", "section": "colors" },
+      { "name": "The No-Scooter Palette Rule", "body": "Âmbar de mobilidade elétrica não entra em novos componentes.", "section": "colors" },
+      { "name": "The Montserrat-Only-Headlines Rule", "body": "Títulos usam Montserrat; corpo e labels usam Outfit.", "section": "typography" },
+      { "name": "The Atmospheric-Not-Decorative Rule", "body": "Partículas e neon só em seções escuras ambientais.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar verde apenas em CTAs e WhatsApp",
+      "Do manter seção de cursos em fundo claro com cards brancos",
+      "Do usar sky para ambiente, labels e underlines",
+      "Do escrever copy para técnicos automotivos",
+      "Do manter aria-label em FAB e botões de curso"
+    ],
+    "donts": [
+      "Don't usar identidade de scooters / mobilidade elétrica / patinetes",
+      "Don't usar landing pages SaaS genéricas",
+      "Don't usar fundos cream/sand/beige editoriais de template AI",
+      "Don't aplicar glassmorphism ou neon decorativo sem função",
+      "Don't usar gradiente em texto",
+      "Don't colocar neon azul no botão WhatsApp",
+      "Don't animar layout com tilt 3D em cards de curso"
+    ]
+  }
+}

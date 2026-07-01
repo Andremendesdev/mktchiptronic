@@ -3,8 +3,6 @@
 import { Phone, Instagram, MapPin } from "lucide-react";
 import Logo from "./Logo";
 import ScrollReveal from "./ui/ScrollReveal";
-import NeonLights from "./effects/NeonLights";
-import FloatingParticles from "./effects/FloatingParticles";
 
 const PHONE = "(14) 99999-9999";
 const PHONE_HREF = "tel:+5514999999999";
@@ -17,11 +15,10 @@ const MAP_LINK = "https://maps.google.com/?q=Piraju,+SP,+Brasil";
 const Footer = () => {
   return (
     <footer id="contato" className="relative mt-margin-desktop overflow-hidden border-t border-white/10">
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <NeonLights />
-        <FloatingParticles />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-      </div>
+      <div
+        className="absolute inset-0 pointer-events-none bg-gradient-to-b from-background to-surface-container-low"
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 max-w-container-max mx-auto px-4 sm:px-gutter md:px-margin-desktop py-14 sm:py-16 md:py-20 pb-24 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12">
@@ -30,18 +27,16 @@ const Footer = () => {
               <Logo className="h-30 md:h-[132px] w-auto" />
             </a>
             <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-xs">
-              Tecnologia automotiva em Piraju e região. Cursos gratuitos e
-              soluções para sua oficina.
+              Equipamentos e cursos gratuitos de diagnóstico automotivo em
+              Piraju e região. Fale com a equipe pelo WhatsApp ou telefone.
             </p>
-            <p className="text-[10px] font-medium tracking-[0.2em] uppercase text-sky-500">
+            <p className="section-eyebrow">
               Piraju — SP e região
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1} className="lg:col-span-3 flex flex-col gap-4">
-            <p className="text-[10px] font-medium tracking-[0.2em] uppercase text-sky-500">
-              Contato
-            </p>
+            <p className="section-eyebrow">Contato</p>
 
             <a
               href={PHONE_HREF}
@@ -88,9 +83,7 @@ const Footer = () => {
 
           <ScrollReveal delay={0.2} className="lg:col-span-5 flex flex-col gap-4">
             <div className="flex items-center justify-between gap-3">
-              <p className="text-[10px] font-medium tracking-[0.2em] uppercase text-sky-500">
-                Onde estamos
-              </p>
+              <p className="section-eyebrow">Onde estamos</p>
               <a
                 href={MAP_LINK}
                 target="_blank"
@@ -120,8 +113,8 @@ const Footer = () => {
             © {new Date().getFullYear()} Chiptronic. Todos os direitos
             reservados.
           </p>
-          <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-sky-500 font-medium">
-            Piraju-SP · Since 2025
+          <p className="section-eyebrow">
+            Tecnologia automotiva · Piraju-SP
           </p>
         </div>
       </div>

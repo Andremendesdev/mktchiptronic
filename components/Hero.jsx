@@ -1,14 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import HeroFeatureBadges from "./HeroFeatureBadges";
 import { useLoading } from "./LoadingProvider";
+import { EASE_OUT } from "@/lib/motion";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
-const WHATSAPP_URL = "https://wa.me/1234567890";
+import { WHATSAPP_GENERAL_URL } from "@/lib/whatsapp";
 
 const Hero = () => {
   const { heroReady } = useLoading();
+  const reduced = useReducedMotion();
+  const [videoFailed, setVideoFailed] = useState(false);
 
   return (
     <section
@@ -16,66 +21,110 @@ const Hero = () => {
       className="relative min-h-[64svh] md:min-h-[620px] flex items-center pt-28 pb-10 md:pt-margin-desktop md:pb-12 px-gutter md:px-margin-desktop overflow-hidden -mt-20"
     >
       <div className="absolute inset-0 z-0 bg-surface-container-lowest">
-        <motion.video
-          initial={{ opacity: 0 }}
-          animate={heroReady ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+        {!videoFailed ? (
+          <motion.video
+            initial={reduced ? false : { opacity: 0 }}
+            animate={
+              heroReady ? { opacity: 1 } : reduced ? { opacity: 1 } : { opacity: 0 }
+            }
+            transition={{ duration: reduced ? 0 : 1.2, ease: "easeOut" }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/fundo.png"
+            onError={() => setVideoFailed(true)}
+            className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center transform-gpu [backface-visibility:hidden] brightness-100 contrast-100 saturate-100 md:brightness-[1.06] md:contrast-[1.04] md:saturate-[1.05]"
+            aria-hidden="true"
+          >
+            <source src="/herovid.mp4" type="video/mp4" />
+          </motion.video>
+        ) : (
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url(/fundo.png)" }}
+            aria-hidden="true"
+          />
+        )}
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent md:via-background/25"
           aria-hidden="true"
-        >
-          <source src="/herovid.mp4" type="video/mp4" />
-        </motion.video>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent md:from-background/35"
+          aria-hidden="true"
+        />
       </div>
 
-      <div className="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-margin-desktop items-center">
+      <div className="relative z-10 max-w-container-max mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={heroReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-start md:mt-20"
+          initial={reduced ? false : { opacity: 0, x: -40 }}
+          animate={
+            heroReady || reduced
+              ? { opacity: 1, x: 0 }
+              : { opacity: 0, x: -40 }
+          }
+          transition={{
+            duration: reduced ? 0 : 0.8,
+            delay: reduced ? 0 : 0.1,
+            ease: EASE_OUT,
+          }}
+          className="flex flex-col items-start max-w-xl md:max-w-2xl md:mt-20"
         >
-          <h1 className="mt-8 md:mt-10 font-headline-xl text-on-surface leading-tight">
-            <div className="text-[28px] md:text-[34px] leading-snug font-semibold max-w-xl">
-              <span className="text-green-500">
-                Cursos Gratuitos Chiptronic:
-              </span>{" "}
+          <h1 className="mt-8 md:mt-10 font-headline-xl text-on-surface leading-tight [text-shadow:0_2px_18px_rgba(0,0,0,0.85),0_1px_4px_rgba(0,0,0,0.95)]">
+            <span className="block text-[28px] md:text-[34px] leading-snug font-semibold">
+              <span className="text-green-500">Cursos gratuitos Chiptronic:</span>{" "}
               <span className="text-white">
-                qualifique-se na tecnologia automotiva!
+                diagnóstico, injeção e diesel na prática.
               </span>
-            </div>
+            </span>
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-8 md:mt-6 font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed"
+            initial={reduced ? false : { opacity: 0, y: 24 }}
+            animate={
+              heroReady || reduced
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 24 }
+            }
+            transition={{
+              duration: reduced ? 0 : 0.6,
+              delay: reduced ? 0 : 0.35,
+              ease: EASE_OUT,
+            }}
+            className="mt-6 md:mt-5 font-body-lg text-body-lg text-on-surface-variant max-w-[38ch] leading-relaxed [text-shadow:0_1px_14px_rgba(0,0,0,0.9),0_1px_3px_rgba(0,0,0,0.95)]"
           >
-            Aprenda com conteúdos de alta qualidade e destaque-se.
+            Aprenda a operar Motodiag, ECU Test, Dieseldiag e outros
+            equipamentos — com a equipe Chiptronic, sem taxa de inscrição.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-            className="mt-8 md:mt-6"
+            initial={reduced ? false : { opacity: 0, y: 20 }}
+            animate={
+              heroReady || reduced
+                ? { opacity: 1, y: 0 }
+                : { opacity: 0, y: 20 }
+            }
+            transition={{
+              duration: reduced ? 0 : 0.5,
+              delay: reduced ? 0 : 0.45,
+              ease: EASE_OUT,
+            }}
+            className="mt-6 md:mt-5 w-full sm:w-auto"
           >
             <a
-              href={WHATSAPP_URL}
-              className="inline-flex items-center justify-center gap-base font-label-md text-label-md bg-gradient-to-b from-green-400 to-green-600 text-white px-8 py-4 rounded-md w-full sm:w-auto shadow-[0_0_8px_rgba(74,222,128,0.25),0_0_16px_rgba(34,197,94,0.15)] hover:brightness-110 hover:scale-[1.02] hover:shadow-[0_0_10px_rgba(74,222,128,0.35),0_0_20px_rgba(34,197,94,0.2)] active:scale-[0.98] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              href={WHATSAPP_GENERAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 min-h-11 font-label-md text-label-md bg-gradient-to-b from-green-400 to-green-600 text-white px-8 py-3 rounded-md w-full sm:w-auto shadow-[0_4px_12px_rgba(0,0,0,0.35)] hover:brightness-110 hover:scale-[1.02] hover:shadow-[0_0_10px_rgba(74,222,128,0.35),0_0_20px_rgba(34,197,94,0.2),0_6px_16px_rgba(0,0,0,0.35)] active:scale-[0.98] active:brightness-95 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background motion-reduce:transition-none motion-reduce:hover:scale-100"
             >
-              Quero aprender agora!
-              <ArrowRight size={18} />
+              Inscrever pelo WhatsApp
+              <ArrowRight size={18} aria-hidden="true" />
             </a>
           </motion.div>
 
-          <div className="mt-8 md:mt-10 w-full">
+          <div className="mt-8 md:mt-10 w-full max-w-2xl">
             <HeroFeatureBadges />
           </div>
         </motion.div>

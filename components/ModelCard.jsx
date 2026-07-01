@@ -2,11 +2,30 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { Battery, Gauge } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ScrollUnderline from "./ui/ScrollUnderline";
 
-const WHATSAPP_URL = "https://wa.me/1234567890";
+import { WHATSAPP_GENERAL_URL } from "@/lib/whatsapp";
+
+const MetaChips = ({ meta }) => {
+  const parts = meta.split(" · ").filter(Boolean);
+
+  return (
+    <ul
+      className="flex flex-wrap justify-center gap-1.5 mt-2.5"
+      aria-label="Detalhes do curso"
+    >
+      {parts.map((part) => (
+        <li
+          key={part}
+          className="text-xs font-medium text-neutral-600 bg-neutral-100 border border-neutral-200/90 rounded px-2 py-0.5 leading-tight"
+        >
+          {part}
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 const ModelCard = ({
   badge,
@@ -14,8 +33,9 @@ const ModelCard = ({
   imageAlt,
   name,
   description,
-  range,
-  topSpeed,
+  meta,
+  highlight,
+  highlightLabel = "Ideal para começar",
   ctaText,
   ctaStyle,
   ctaHref,
@@ -51,10 +71,10 @@ const ModelCard = ({
 
   const showBadge = badge && !compact;
   const showDescription = description && !compact;
-  const showSpecs = range && topSpeed && !compact;
+  const showMeta = meta && compact;
 
   return (
-    <div className={cn("h-full", enableTilt && "card-3d")}>
+    <article className={cn("h-full", enableTilt && "card-3d")}>
       <div
         ref={cardRef}
         onMouseMove={enableTilt ? handleMouseMove : undefined}
@@ -80,6 +100,12 @@ const ModelCard = ({
       >
         {light ? null : <div className="card-3d-shine" />}
 
+        {highlight && compact ? (
+          <span className="absolute top-3 left-3 z-10 text-[11px] font-semibold tracking-wide uppercase text-sky-800 bg-sky-100 border border-sky-200/90 px-2 py-0.5 rounded-full">
+            {highlightLabel}
+          </span>
+        ) : null}
+
         {showBadge ? (
           <div className="absolute top-6 right-6 z-10">
             <span
@@ -96,38 +122,51 @@ const ModelCard = ({
         <div
           className={cn(
             "relative rounded-xl flex items-center justify-center overflow-hidden",
-            compact ? "h-48 md:h-52 p-3" : "h-64 p-4",
+            compact ? "h-48 md:h-52 p-0" : "h-64 p-4",
             light
-              ? "bg-neutral-100 ring-1 ring-neutral-200"
+              ? compact
+                ? "bg-neutral-900 ring-1 ring-neutral-800"
+                : "bg-neutral-100 ring-1 ring-neutral-200"
               : "bg-surface-container-lowest ring-1 ring-white/5"
           )}
         >
           <Image
+            key={imageSrc}
             src={imageSrc}
             alt={imageAlt}
             width={400}
             height={compact ? 208 : 256}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            unoptimized={compact}
             className={cn(
-              "max-h-full w-auto object-contain group-hover:scale-105 transition-transform duration-500",
-              light
-                ? "opacity-95 group-hover:opacity-100"
-                : "mix-blend-screen opacity-80 group-hover:opacity-100"
+              "transition-transform duration-500 motion-reduce:transition-none group-hover:scale-105 motion-reduce:group-hover:scale-100",
+              compact
+                ? "h-full w-full object-cover object-center opacity-100 group-hover:opacity-100"
+                : "max-h-full w-auto object-contain group-hover:scale-105",
+              !compact &&
+                (light
+                  ? "opacity-95 group-hover:opacity-100"
+                  : "mix-blend-screen opacity-80 group-hover:opacity-100")
             )}
           />
         </div>
 
         <div className={cn("flex-grow", compact && "text-center")}>
-          <ScrollUnderline
-            textClassName={cn(
-              compact
-                ? "text-base md:text-lg font-semibold leading-snug"
-                : "font-headline-md text-headline-md",
-              light && "text-neutral-900",
-              compact && "text-center"
-            )}
-          >
-            {name}
-          </ScrollUnderline>
+          {compact ? (
+            <h3 className="text-base md:text-lg font-semibold font-headline-md leading-snug text-neutral-900 text-balance">
+              {name}
+            </h3>
+          ) : (
+            <ScrollUnderline
+              textClassName={cn(
+                "font-headline-md text-headline-md",
+                light && "text-neutral-900"
+              )}
+            >
+              {name}
+            </ScrollUnderline>
+          )}
+          {showMeta ? <MetaChips meta={meta} /> : null}
           {showDescription ? (
             <p
               className={cn(
@@ -140,70 +179,24 @@ const ModelCard = ({
           ) : null}
         </div>
 
-        {showSpecs ? (
-          <div
-            className={cn(
-              "grid grid-cols-2 gap-5 pt-6 border-t mt-auto",
-              light ? "border-neutral-200" : "border-white/10"
-            )}
-          >
-            <div className="flex flex-col gap-1">
-              <span
-                className={cn(
-                  "flex items-center gap-1 font-label-md text-label-md",
-                  light ? "text-neutral-500" : "text-on-surface-variant"
-                )}
-              >
-                <Battery size={14} />
-                AUTONOMIA
-              </span>
-              <span
-                className={cn(
-                  "font-body-md text-body-md font-semibold",
-                  light ? "text-neutral-900" : "text-on-surface"
-                )}
-              >
-                {range}
-              </span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span
-                className={cn(
-                  "flex items-center gap-1 font-label-md text-label-md",
-                  light ? "text-neutral-500" : "text-on-surface-variant"
-                )}
-              >
-                <Gauge size={14} />
-                VELOCIDADE
-              </span>
-              <span
-                className={cn(
-                  "font-body-md text-body-md font-semibold",
-                  light ? "text-neutral-900" : "text-on-surface"
-                )}
-              >
-                {topSpeed}
-              </span>
-            </div>
-          </div>
-        ) : null}
-
         <a
-          href={ctaHref || WHATSAPP_URL}
+          href={ctaHref || WHATSAPP_GENERAL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className={cn(
-            "w-full text-center font-label-md text-label-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500",
+            "w-full inline-flex items-center justify-center font-label-md text-label-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500",
             compact
-              ? "py-2.5 rounded-md mt-auto transition-colors duration-200"
-              : "py-3 rounded-full mt-4 shadow-sm hover:shadow-md transition-all",
+              ? "min-h-11 py-2.5 rounded-md mt-auto transition-colors duration-200 active:bg-green-700"
+              : "min-h-11 py-3 rounded-full mt-4 shadow-sm hover:shadow-md transition-all active:scale-[0.98]",
             light ? "focus-visible:ring-offset-white" : "focus-visible:ring-offset-surface",
             ctaStyle
           )}
-          aria-label={`Consultar sobre ${name}`}
+          aria-label={`${ctaText || "Inscrever no WhatsApp"}: ${name}`}
         >
           {ctaText || "Saiba Mais"}
         </a>
       </div>
-    </div>
+    </article>
   );
 };
 
