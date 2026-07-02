@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import HeroFeatureBadges from "./HeroFeatureBadges";
@@ -10,10 +10,44 @@ import { useReducedMotion } from "@/lib/useReducedMotion";
 
 import { WHATSAPP_GENERAL_URL } from "@/lib/whatsapp";
 
+// Bump ao trocar herovid.mp4 ou fundo.png para invalidar cache do Safari iOS.
+const HERO_ASSETS_V = "2";
+const HERO_VIDEO_SRC = `/herovid.mp4?v=${HERO_ASSETS_V}`;
+const HERO_POSTER_SRC = `/fundo.png?v=${HERO_ASSETS_V}`;
+
 const Hero = () => {
   const { heroReady } = useLoading();
   const reduced = useReducedMotion();
+  const videoRef = useRef(null);
   const [videoFailed, setVideoFailed] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || videoFailed) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute("webkit-playsinline", "");
+
+    const tryPlay = () => {
+      video.play().catch(() => {});
+    };
+
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay);
+    video.addEventListener("canplay", tryPlay);
+
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+    };
+  }, [videoFailed]);
+
+  useEffect(() => {
+    if (!heroReady || videoFailed) return;
+    videoRef.current?.play().catch(() => {});
+  }, [heroReady, videoFailed]);
 
   return (
     <section
@@ -22,28 +56,24 @@ const Hero = () => {
     >
       <div className="absolute inset-0 z-0 bg-surface-container-lowest">
         {!videoFailed ? (
-          <motion.video
-            initial={reduced ? false : { opacity: 0 }}
-            animate={
-              heroReady ? { opacity: 1 } : reduced ? { opacity: 1 } : { opacity: 0 }
-            }
-            transition={{ duration: reduced ? 0 : 1.2, ease: "easeOut" }}
+          <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            poster="/fundo.png"
+            poster={HERO_POSTER_SRC}
             onError={() => setVideoFailed(true)}
-            className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center transform-gpu [backface-visibility:hidden] brightness-100 contrast-100 saturate-100 md:brightness-[1.06] md:contrast-[1.04] md:saturate-[1.05]"
+            className="absolute inset-0 w-full h-full min-w-full min-h-full object-cover object-center brightness-100 contrast-100 saturate-100 md:brightness-[1.06] md:contrast-[1.04] md:saturate-[1.05]"
             aria-hidden="true"
           >
-            <source src="/herovid.mp4" type="video/mp4" />
-          </motion.video>
+            <source src={HERO_VIDEO_SRC} type="video/mp4" />
+          </video>
         ) : (
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: "url(/fundo.png)" }}
+            style={{ backgroundImage: `url(${HERO_POSTER_SRC})` }}
             aria-hidden="true"
           />
         )}
